@@ -1,3 +1,33 @@
+import React, { useState } from "react";
+import NotValidateToChat from "./components/NotValidateToChat";
+import Chat from "./components/Chat";
+
+const App = () => {
+  const [isConnected, setIsConnected] = useState(false);
+  const [username, setUsername] = useState("");
+  const [isValidateToChat, setIsValidateToChat] = useState(false);
+
+  console.log(username);
+  return (
+    <div className="min-h-screen w-full flex p-6 flex-col gap-4 items-center">
+      <div>Socket: {isConnected ? "Connected" : "Disconnected"}</div>
+
+      {!isValidateToChat ? (
+        <NotValidateToChat
+          setIsValidateToChat={setIsValidateToChat}
+          username={username}
+          setUsername={setUsername}
+        />
+      ) : (
+        <Chat setIsConnected={setIsConnected} username={username} />
+      )}
+    </div>
+  );
+};
+
+export default App;
+
+
 // import React, { useState, useEffect } from "react";
 // import { socket } from "./socket";
 
@@ -94,32 +124,3 @@
 // }
 
 // export default App;
-
-import React, { useState } from "react";
-import NotValidateToChat from "./components/NotValidateToChat";
-import Chat from "./components/Chat";
-
-const App = () => {
-  const [isConnected, setIsConnected] = useState(false);
-  const [username, setUsername] = useState("");
-  const [isValidateToChat, setIsValidateToChat] = useState(false);
-
-  console.log(username);
-  return (
-    <div className="min-h-screen w-full flex p-6 flex-col gap-4 items-center">
-      <div>Socket: {isConnected ? "Connected" : "Disconnected"}</div>
-
-      {!isValidateToChat ? (
-        <NotValidateToChat
-          setIsValidateToChat={setIsValidateToChat}
-          username={username}
-          setUsername={setUsername}
-        />
-      ) : (
-        <Chat setIsConnected={setIsConnected} username={username} />
-      )}
-    </div>
-  );
-};
-
-export default App;
